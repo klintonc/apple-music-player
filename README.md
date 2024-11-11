@@ -2,6 +2,14 @@
 
 A music player UI inspired by Apple Music, built with React Native and Expo. It plays a sample library of songs with background audio, a searchable song list and a floating mini player.
 
+> **🚧 Work in progress.** This project is not finished. Only the **Songs** tab and the mini player work today.
+>
+> Not built yet:
+> - Favorites, Playlists and Artists screens (placeholders only)
+> - Full-screen player (tapping the mini player does nothing yet)
+> - Rating songs as favorites and using the playlist data from the library
+> - Skip to previous, progress bar and volume controls in the UI
+
 ## Features
 
 - **Songs** tab with the full library and a search bar in the header
@@ -11,8 +19,6 @@ A music player UI inspired by Apple Music, built with React Native and Expo. It 
 - Tapping a song queues the visible list, so skipping moves through the songs; the queue repeats
 - Background audio on iOS
 - Blurred tab bar with **Favorites**, **Playlists**, **Songs** and **Artists** tabs
-
-Favorites, Playlists and Artists are placeholder screens for now.
 
 ## Tech stack
 
