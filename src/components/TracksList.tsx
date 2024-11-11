@@ -11,8 +11,14 @@ export type TracksListProps = Partial<FlatListProps<Track>> & {
 const ItemDivider = () => <View style={{ ...utilsStyles.itemSeparator, marginVertical: 9, marginLeft: 60 }} />;
 
 export const TracksList = ({ tracks, ...flatListProps }: TracksListProps) => {
-	const handleTrackSelect = async (track: Track) => {
-		await TrackPlayer.load(track);
+	const handleTrackSelect = async (selectedTrack: Track) => {
+		const trackIndex = tracks.findIndex((track) => track.url === selectedTrack.url);
+		if (trackIndex === -1) return;
+
+		// queue the whole list so skip next / previous work, then start at the selected track
+		await TrackPlayer.reset();
+		await TrackPlayer.add(tracks);
+		await TrackPlayer.skip(trackIndex);
 		await TrackPlayer.play();
 	};
 

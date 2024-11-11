@@ -14,14 +14,17 @@ export const useSetupTrackPlayer = ({ onLoad }: { onLoad?: () => void }) => {
 	const isInitialized = useRef(false);
 
 	useEffect(() => {
+		// the player can only be set up once; calling setupPlayer again throws
+		if (isInitialized.current) return;
+		isInitialized.current = true;
+
 		setupPlayer()
-			.then(() => {
-				isInitialized.current = true;
-				onLoad?.();
-			})
 			.catch((err) => {
-				isInitialized.current = false;
 				console.error(err);
+			})
+			.finally(() => {
+				// always continue past the splash screen, even if setup failed
+				onLoad?.();
 			});
 	}, [onLoad]);
 };
